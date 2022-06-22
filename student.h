@@ -5,13 +5,13 @@ using std::string;
 //static array degreeString used in print() function to avoid having to directly convert enums to strings
 static const string degreeString[] = { "Security", "Network", "Software", "None" };
 
-class student {
+class Student {
 private:
 	int age;
 	string lastName, firstName, email, studentID;
-	const static int daysArraySize = 4;
+	const static int daysArraySize = 3;
 	int numberOfDays[daysArraySize];
-	degreeProgram degree;
+	DegreeProgram degree;
 
 public:
 	//getter functions
@@ -20,8 +20,8 @@ public:
 	string getFirstName();
 	string getEmail();
 	string getStudentID();
-	int* getNumberOfDays();
-	degreeProgram getDegreeProgram();
+	int *getNumberOfDays();
+	DegreeProgram getDegreeProgram();
 
 	//setter functions
 	void setAge(int newAge);
@@ -29,14 +29,14 @@ public:
 	void setFirstName(string newFirstName);
 	void setEmail(string newEmail);
 	void setStudentID(string newStudentID);
-	void setNumberOfDays(int* newNumberOfDays);
-	void setDegreeProgram(degreeProgram newDegreeProgram);
+	void setNumberOfDays(int *newNumberOfDays);
+	void setDegreeProgram(DegreeProgram newDegreeProgram);
 
 	//print function
 	void print(string printInfo);
 
 	//default constructor, constructor and destructor
-	student();
-	student(int age, string lastName, string FirstName, string email, string studentID, int numberOfDays[], degreeProgram degree);
-	~student();
+	Student();
+	Student(string studentID, string FirstName, string lastName, string email, int age, int *numberOfDays, DegreeProgram degree);
+	~Student();
 };
