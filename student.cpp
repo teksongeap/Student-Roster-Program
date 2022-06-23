@@ -61,33 +61,50 @@ void Student::setDegreeProgram(DegreeProgram newDegreeProgram) {
 //print function, input desired print information and outputs
 void Student::print(string printInfo) {
 	if (printInfo == "age") {
-		cout << "Age: " << this->age << "\t";
+		cout << this->getAge() << "\t"  ;
 	}
 	else if (printInfo == "lastName") {
-		cout << "Last Name: " << this->lastName << "\t";
+		cout << this->getLastName()  << "\t" ;
 	}
 	else if (printInfo == "firstName") {
-		cout << "First Name: " << this->firstName << "\t";
+		cout << this->getFirstName()  << "\t" ;
 	}
 	else if (printInfo == "email") {
-		cout << "Email: " << this->email << "\t";
+		cout << this->getEmail()  << "\t" ;
 	}
 	else if (printInfo == "studentID") {
-		cout << "Student ID: " << this->studentID << "\t";
+		cout << this->getStudentID() << "\t" ;
 	}
 	else if (printInfo == "numberOfDays") {
-		cout << "Number Of Days to Complete Course: ";
 		for (int i = 0; i < daysArraySize; i++) {
 			if (i != daysArraySize - 1) {
-				cout << this->numberOfDays[i] << ", ";
+				cout << this->getNumberOfDays()[i] << ", ";
 			}
 			else {
-				cout << this->numberOfDays[i] << "\t";
+				cout << this->getNumberOfDays()[i] << "\t" ;
 			}
 		}
 	}
 	else if (printInfo == "DegreeProgram") {
-		cout << degreeString[(int)degree] << "\t";
+		cout << degreeString[(int)degree] << "\t" ;
+	}
+	else if (printInfo == "all") {
+		cout << setw(3) << this->getStudentID() << '|';
+		cout << setw(10) << this->getFirstName() << '|';
+		cout << setw(10) << this->getLastName() << '|';
+		cout << setw(25) << this->getEmail() << '|';
+		cout << setw(4) << this->getAge() << '|';
+		cout << setw(6);
+		for (int i = 0; i < daysArraySize; i++) {
+			if (i != daysArraySize - 1) {
+				cout << this->getNumberOfDays()[i] << ", ";
+			}
+			else {
+				cout << this->getNumberOfDays()[i] << '|';
+			}
+		}
+		cout << setw(10) << degreeString[(int)degree] << '|';
+		
 	}
 	else {
 		cout << "Invalid entry for string printInfo parameter." << endl;
@@ -106,7 +123,7 @@ Student::Student() {
 	}
 	this->degree = DegreeProgram::None;
 }
-Student::Student(string studentID, string FirstName, string lastName, string email, int age, int *numberOfDays, DegreeProgram degree) {
+Student::Student(string studentID, string firstName, string lastName, string email, int age, int *numberOfDays, DegreeProgram degree) {
 	this->age = age;
 	this->lastName = lastName;
 	this->firstName = firstName;
@@ -118,6 +135,6 @@ Student::Student(string studentID, string FirstName, string lastName, string ema
 	this->degree = degree;
 }
 Student::~Student() {
-	cout << "Student destructor called" << endl;
+	cout << "Student destructor for " << this->studentID << " called." << endl;
 }
 

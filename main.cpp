@@ -14,7 +14,7 @@ int main() {
 	cout << "Course: C867" << endl;
 	cout << "Programming Language: C++" << endl;
 	cout << "Student ID: 009489418" << endl;
-	cout << "Name: Teksong Eap" << endl;
+	cout << "Name: Teksong Eap" << endl << endl;
 
 	//input data for program
 	const string studentData[] = { 
@@ -25,16 +25,24 @@ int main() {
 		"A5,Teksong,Eap,teap@wgu.edu,25,25,26,27,SOFTWARE" 
 	};
 
-	//adds each student to classRoster
+	Roster classRoster;
+
+	//parses and adds each student to classRoster
+	for (int i = 0; i < 5; i++) {
+		classRoster.parse(studentData[i]);
+	}
 
 	classRoster.printAll();
 
 	classRoster.printInvalidEmails();
+	
+	//iterates through studentIDArray to print averages days in course according to ID
+	const string studentIDArray[] = { "A1", "A2", "A3", "A4", "A5" };
+	for (int i = 0; i < 5; i++) {
+		classRoster.printAverageDaysInCourse(studentIDArray[i]);
+	}
 
-	//below will be turned into a for loop
-	classRoster.printAverageDaysInCourse(/*current_object's student id*/);
-
-	classRoster.printByDegreeProgram(Software);
+	classRoster.printByDegreeProgram(DegreeProgram::Software);
 	classRoster.remove("A3");
 	classRoster.printAll();
 	classRoster.remove("A3");
