@@ -58,7 +58,7 @@ void Roster::parse(string studentInfo) {
 			rightSide = studentInfo.find(",", leftSide);
 			days3 = stoi(studentInfo.substr(leftSide, rightSide - leftSide));
 		}
-		else if (nextArg == 9) { //if statement for degree program, grabs first 2 letters and uses it to determine degree
+		else if (nextArg == 9) { //if statement for degree program, grabs last substr and uses it to determine degree
 			degreeString = studentInfo.substr(leftSide);
 			if (degreeString == "SECURITY") {
 				degree = DegreeProgram::Security;
@@ -97,14 +97,22 @@ void Roster::add(string studentID,
 
 //removes Student from studentRoster based on studentID
 void Roster::remove(string studentID) {
+	cout << "Attempting to remove Student " << studentID << "..." << endl << endl;
 	for (int i = 0; i <= Roster::lastIndex; i++) {
-		if (Roster::studentRoster[i]->getStudentID() == studentID) {
-			/*Roster::studentRoster[i] = nullptr;*/
+		if (Roster::studentRoster[i]->getStudentID() == "--") {
+			cout << "Student not found!" << endl << endl;
+		}
+		else if (Roster::studentRoster[i]->getStudentID() == studentID) {
+			int placeHolder[] = { 0, 0, 0 };
+			Roster::studentRoster[i]->setStudentID("--");
+			Roster::studentRoster[i]->setFirstName("----------");
+			Roster::studentRoster[i]->setLastName("----------");
+			Roster::studentRoster[i]->setEmail("---------REMOVED---------");
+			Roster::studentRoster[i]->setNumberOfDays(placeHolder);
+			Roster::studentRoster[i]->setAge(0);
+			Roster::studentRoster[i]->setDegreeProgram(DegreeProgram::None);
 			cout << "Removed student " << studentID << "." << endl << endl;
 			break;
-		}
-		else {
-			cout << "Student not found!" << endl << endl;
 		}
 	}
 }
@@ -114,10 +122,8 @@ void Roster::printAll() {
 	//header of table
 	cout << "Format: Student ID | First Name | Last Name | Email | Age | Days In Course | Degree" << endl << endl;
 	for (int i = 0; i <= Roster::lastIndex; i++) {
-		if (studentRoster[i] != nullptr) {
 			studentRoster[i]->print("all");
 			cout << endl;
-		}
 	}
 	cout << endl;
 }
@@ -156,7 +162,7 @@ void Roster::printInvalidEmails() {
 
 //prints Students from studentRoster grouped by DegreeProgram
 void Roster::printByDegreeProgram(DegreeProgram degree) {
-	//header of table
+	//header of table, checks for degree program
 	if (degree == DegreeProgram::Security) {
 		cout << "Students in SECURITY:" << endl;
 	}
@@ -171,10 +177,8 @@ void Roster::printByDegreeProgram(DegreeProgram degree) {
 	//prints info about Students from studentRoster based on degree
 	for (int i = 0; i <= Roster::lastIndex; i++) {
 		if (Roster::studentRoster[i]->getDegreeProgram() == degree) {
-			if (studentRoster[i] != nullptr) {
 				studentRoster[i]->print("all");
 				cout << endl;
-			}
 		}
 	}
 	cout << endl;

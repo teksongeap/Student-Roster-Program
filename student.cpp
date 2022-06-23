@@ -88,19 +88,19 @@ void Student::print(string printInfo) {
 	else if (printInfo == "DegreeProgram") {
 		cout << degreeString[(int)degree] << "\t" ;
 	}
+	//uses iomanip to make output look pretty
 	else if (printInfo == "all") {
 		cout << setw(3) << this->getStudentID() << '|';
 		cout << setw(10) << this->getFirstName() << '|';
 		cout << setw(10) << this->getLastName() << '|';
 		cout << setw(25) << this->getEmail() << '|';
 		cout << setw(4) << this->getAge() << '|';
-		cout << setw(6);
 		for (int i = 0; i < daysArraySize; i++) {
 			if (i != daysArraySize - 1) {
-				cout << this->getNumberOfDays()[i] << ", ";
+				cout << setw(3) << this->getNumberOfDays()[i] << ", ";
 			}
 			else {
-				cout << this->getNumberOfDays()[i] << '|';
+				cout << setw(3) << this->getNumberOfDays()[i] << '|';
 			}
 		}
 		cout << setw(10) << degreeString[(int)degree] << '|';

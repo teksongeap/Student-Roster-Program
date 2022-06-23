@@ -32,8 +32,10 @@ int main() {
 		classRoster.parse(studentData[i]);
 	}
 
+	//prints all info in student table
 	classRoster.printAll();
 
+	//prints all invalid emails
 	classRoster.printInvalidEmails();
 	
 	//iterates through studentIDArray to print averages days in course according to ID
@@ -42,9 +44,14 @@ int main() {
 		classRoster.printAverageDaysInCourse(studentIDArray[i]);
 	}
 
+	//print by specified degree program enumerated type
 	classRoster.printByDegreeProgram(DegreeProgram::Software);
+
+	//Removes student A3
 	classRoster.remove("A3");
 	classRoster.printAll();
+
+	//should return "Student not found!""
 	classRoster.remove("A3");
 
 	return 0;
